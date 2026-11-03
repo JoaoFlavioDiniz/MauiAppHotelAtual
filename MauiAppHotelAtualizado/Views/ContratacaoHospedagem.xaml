@@ -2,38 +2,42 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MauiAppHotelAtualizado.Views.ContratacaoHospedagem"
-             Title="ContratacaoHospedagem"
-             Shell.NavBarIsVisible="False">
-
-    <ContentPage.Resources>
-        <Style TargetType="Frame">
-            <Setter Property="BackgroundColor" Value="#362417" />
-        </Style>
-    </ContentPage.Resources>
-    
+             Title="Contratação de Hospedagem"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="{StaticResource Gray200}">
 
     <VerticalStackLayout VerticalOptions="CenterAndExpand"
-                         Padding="10"
-                         Spacing="10">
+                         Padding="20"
+                         Spacing="20">
 
         <Label Text="Cálculo da Diária"
-                FontFamily="Kalam"
-                FontSize="50"
+               FontFamily="DancingScriptBold"
+               FontSize="44"
                HorizontalTextAlignment="Center"
-                TextColor="{StaticResource Primary}" />
+               TextColor="DarkGreen" />
 
-        <Border Padding="10"
-                BackgroundColor="#222222"
-                StrokeShape="RoundRectangle 10">
-            <VerticalStackLayout>
+        <Border Padding="15"
+                BackgroundColor="#FFFFFF"
+                Stroke="#E2E8F0"
+                StrokeShape="RoundRectangle 12">
+            <VerticalStackLayout Spacing="15">
+
+                <!-- Seleção de Hóspedes -->
                 <Grid RowDefinitions="Auto, Auto"
-                      ColumnDefinitions="*, *, 2*">
+                      ColumnDefinitions="*, *, 2*"
+                      RowSpacing="10">
 
                     <Label Grid.Row="0" Grid.Column="0"
-                            Text="Adultos:" />
+                           Text="Adultos:"
+                           VerticalOptions="Center"
+                           TextColor="#0F172A"
+                           FontAttributes="Bold"/>
 
                     <Label Grid.Row="0" Grid.Column="1"
-                           TextColor="{StaticResource Primary}"
+                           TextColor="#1E3A8A"
+                           FontAttributes="Bold"
+                           FontSize="18"
+                           VerticalOptions="Center"
                            Text="{Binding Value}"
                            BindingContext="{x:Reference stp_adultos}"/>
 
@@ -44,10 +48,16 @@
                              Increment="1" />
 
                     <Label Grid.Row="1" Grid.Column="0"
-                           Text="Crianças:" />
+                           Text="Crianças:"
+                           VerticalOptions="Center"
+                           TextColor="#0F172A"
+                           FontAttributes="Bold"/>
 
                     <Label Grid.Row="1" Grid.Column="1"
-                           TextColor="{StaticResource Primary}"
+                           TextColor="#1E3A8A"
+                           FontAttributes="Bold"
+                           FontSize="18"
+                           VerticalOptions="Center"
                            Text="{Binding Value}"
                            BindingContext="{x:Reference stp_criancas}"/>
 
@@ -58,45 +68,71 @@
                              Increment="1" />
                 </Grid>
 
-                <Frame Padding="10" Margin="10">
-                    <VerticalStackLayout>
-
+                <!-- Seleção de Quarto -->
+                <Border Padding="10" BackgroundColor="#F1F5F9" StrokeShape="RoundRectangle 8" StrokeThickness="0">
+                    <VerticalStackLayout Spacing="5">
                         <Label Text="Escolha sua Suíte"
-                                   TextTransform="Uppercase"
-                                   FontSize="Subtitle"
-                                   TextColor="{StaticResource Primary}"/>
+                               TextTransform="Uppercase"
+                               FontSize="14"
+                               FontAttributes="Bold"
+                               TextColor="#0F172A"/>
 
                         <Picker x:Name="pck_quarto"
                                 ItemDisplayBinding="{Binding Descricao}"
-                                 Title="Selecione sua Acomodação" />
+                                Title="Selecione sua Acomodação"
+                                TitleColor="#0F172A"
+                                TextColor="#0F172A"/>
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
 
-                <Frame Padding="10"
-                    Margin="10">
-                    <VerticalStackLayout Spacing="10">
-
+                <!-- Período de Estadia -->
+                <Border Padding="10" BackgroundColor="#F1F5F9" StrokeShape="RoundRectangle 8" StrokeThickness="0">
+                    <VerticalStackLayout Spacing="8">
                         <Label Text="Período da Estadia"
-                       TextTransform="Uppercase"
-                       FontSize="Subtitle"
-                       TextColor="{StaticResource Primary}"/>
+                               TextTransform="Uppercase"
+                               FontSize="14"
+                               FontAttributes="Bold"
+                               TextColor="#0F172A"/>
 
                         <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
-                            <Label Text="Check-in:" />
+                            <Label Text="Check-in:" VerticalOptions="Center" TextColor="#0F172A"/>
                             <DatePicker x:Name="dtpck_checkin"
                                         DateSelected="dtpck_checkin_DateSelected"
-                                Format="dd/MM/yyyy" />
+                                        Format="dd/MM/yyyy"
+                                        TextColor="#1E3A8A"/>
                         </HorizontalStackLayout>
 
                         <HorizontalStackLayout HorizontalOptions="CenterAndExpand">
-                            <Label Text="Check-out:" />
+                            <Label Text="Check-out:" VerticalOptions="Center" TextColor="#0F172A"/>
                             <DatePicker x:Name="dtpck_checkout"
-                                Format="dd/MM/yyyy" />
+                                        Format="dd/MM/yyyy"
+                                        TextColor="#1E3A8A"/>
                         </HorizontalStackLayout>
                     </VerticalStackLayout>
-                </Frame>
+                </Border>
 
-                <Button Text="Avançar" Clicked="Button_Clicked"  />
+                <!-- Botão de Ação -->
+                <Button Text="Avançar"
+                        Clicked="Button_Clicked"
+                        FontAttributes="Bold"
+                        FontFamily="DancingScript-Bold"
+                        FontSize="28"
+                        TextColor="#FFFFFF"
+                        BackgroundColor="DarkGreen"
+                        CornerRadius="8"
+                        HeightRequest="50"/>
+
+                <Button Text="Sobre"
+                        HorizontalOptions="Center"
+                        WidthRequest="265"
+                        HeightRequest="45"
+                        FontAttributes="Bold"
+                        FontFamily="DancingScript-Bold"
+                        FontSize="28"
+                        BackgroundColor="DarkGreen"
+                        TextColor="#FFFFFF"
+                        CornerRadius="8"
+                        Clicked="Button_Clicked_1" />
 
             </VerticalStackLayout>
         </Border>

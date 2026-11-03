@@ -2,12 +2,12 @@
 {
     public class Hospedagem
     {
-        int qnt_adultos = 0;
-        Quarto quarto_selecionado;
+        private int qnt_adultos = 0;
+        private Quarto quarto_selecionado;
 
-        public Quarto QuartoSelecionado 
-        { 
-            get => quarto_selecionado; 
+        public Quarto QuartoSelecionado
+        {
+            get => quarto_selecionado;
             set
             {
                 if (value == null)
@@ -16,26 +16,23 @@
                 quarto_selecionado = value;
             }
         }
-        
-        
-        public int QntAdultos 
+
+        public int QntAdultos
         {
-            get => qnt_adultos; 
+            get => qnt_adultos;
             set
             {
                 if (value == 0)
-                    throw new Exception("Selecione a quantidade de adultos");
+                    throw new Exception("Selecione a quantidade de adultos.");
 
                 qnt_adultos = value;
             }
         }
-        
-        
-        
-        
+
         public int QntCriancas { get; set; }
         public DateTime DataCheckIn { get; set; }
         public DateTime DataCheckOut { get; set; }
+
         public int Estadia
         {
             get => DataCheckOut.Subtract(DataCheckIn).Days;
@@ -45,11 +42,12 @@
         {
             get
             {
+                if (QuartoSelecionado == null) return 0;
+
                 double valor_adultos = QntAdultos * QuartoSelecionado.ValorDiariaAdulto;
                 double valor_criancas = QntCriancas * QuartoSelecionado.ValorDiariaCrianca;
 
-                double total = (valor_adultos + valor_criancas) * Estadia;
-                return total;
+                return (valor_adultos + valor_criancas) * Estadia;
             }
         }
     }

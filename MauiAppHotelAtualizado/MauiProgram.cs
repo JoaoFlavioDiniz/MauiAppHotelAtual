@@ -13,13 +13,13 @@ namespace MauiAppHotelAtualizado
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                    fonts.AddFont("Kalam-Bold.ttf", "KalamBold");
-                    fonts.AddFont("Kalam-Light.ttf", "KalamLight");
+                    fonts.AddFont("DancingScript-Bold.ttf", "DancingScriptBold");
+                    fonts.AddFont("DancingScript-Regular.ttf", "DancingScriptRegular");
                     fonts.AddFont("Kalam-Regular.ttf", "Kalam");
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();

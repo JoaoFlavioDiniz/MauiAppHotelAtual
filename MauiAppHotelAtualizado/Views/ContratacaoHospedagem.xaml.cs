@@ -4,11 +4,11 @@ namespace MauiAppHotelAtualizado.Views;
 
 public partial class ContratacaoHospedagem : ContentPage
 {
-	public ContratacaoHospedagem()
-	{
-		InitializeComponent();
+    public ContratacaoHospedagem()
+    {
+        InitializeComponent();
 
-		pck_quarto.ItemsSource = App.lista_quartos;
+        pck_quarto.ItemsSource = App.lista_quartos;
 
         dtpck_checkin.MinimumDate = DateTime.Now;
         dtpck_checkin.MaximumDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, DateTime.Now.Day);
@@ -18,12 +18,12 @@ public partial class ContratacaoHospedagem : ContentPage
     }
 
     private void dtpck_checkin_DateSelected(object sender, DateChangedEventArgs e)
-    {              
+    {
         dtpck_checkout.MinimumDate = e.NewDate?.AddDays(1);
         dtpck_checkout.MaximumDate = e.NewDate?.AddMonths(2);
     }
 
-    private void Button_Clicked(object sender, EventArgs e)
+    private async void Button_Clicked(object sender, EventArgs e)
     {
         try
         {
@@ -31,21 +31,24 @@ public partial class ContratacaoHospedagem : ContentPage
             {
                 QntAdultos = Convert.ToInt32(stp_adultos.Value),
                 QntCriancas = Convert.ToInt32(stp_criancas.Value),
-                QuartoSelecionado = (Quarto) pck_quarto.SelectedItem,
+                QuartoSelecionado = (Quarto)pck_quarto.SelectedItem,
                 DataCheckIn = Convert.ToDateTime(dtpck_checkin.Date),
                 DataCheckOut = Convert.ToDateTime(dtpck_checkout.Date)
             };
 
-            Navigation.PushAsync(new HospedagemContratada()
+            await Navigation.PushAsync(new HospedagemContratada()
             {
                 BindingContext = h
             });
-
         }
         catch (Exception ex)
         {
-            DisplayAlertAsync("Ops", ex.Message, "OK");
+            await DisplayAlertAsync("Atenção", ex.Message, "OK");
         }
+    }
 
+    private async void Button_Clicked_1(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new Sobre());
     }
 }
